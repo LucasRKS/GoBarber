@@ -16,6 +16,8 @@ const SignIn: React.FC = () => (
         <input placeholder="Informe seu E-mail" />
         <input type="password" placeholder="Informe sua senha" />
 
+        <button type="submit">Entrar</button>
+
         <a href="forgot">Esqueci minha senha</a>
       </form>
 
