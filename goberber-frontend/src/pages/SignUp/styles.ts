@@ -25,27 +25,17 @@ export const Content = styled.div`
     h1 {
       margin-bottom: 24px;
     }
-
-    a {
-      color: #f4edeb;
-      text-decoration: none;
-      display: block;
-      margin-top: 24px;
-
-      &:hover {
-        color: ${shade(0.2, '#F4edeB')};
-      }
-    }
   }
 
   > a {
-    color: #ff9000;
+    color: #f4edeb;
     text-decoration: none;
     display: flex;
     align-items: center;
+    margin-top: 24px;
 
     &:hover {
-      color: ${shade(0.2, '#FF9000')};
+      color: ${shade(0.2, '#F4edeB')};
     }
 
     svg {

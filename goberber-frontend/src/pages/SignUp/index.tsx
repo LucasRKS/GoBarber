@@ -28,12 +28,12 @@ const SignUp: React.FC = () => (
         />
 
         <Button type="submit">Cadastrar</Button>
-
-        <a href="back">
-          <FiArrowLeft />
-          Voltar para login
-        </a>
       </form>
+
+      <a href="back">
+        <FiArrowLeft />
+        Voltar para login
+      </a>
     </Content>
   </Container>
 );

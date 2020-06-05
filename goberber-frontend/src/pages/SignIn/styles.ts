@@ -43,6 +43,7 @@ export const Content = styled.div`
     text-decoration: none;
     display: flex;
     align-items: center;
+    margin-top: 24px;
 
     &:hover {
       color: ${shade(0.2, '#FF9000')};
