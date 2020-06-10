@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { Container, Content, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrros from '../../utils/getValidationErrors';
 
 import Input from '../../components/Input';
@@ -42,9 +42,11 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
       } catch (e) {
-        const errors = getValidationErrros(e);
+        if (e instanceof Yup.ValidationError) {
+          const errors = getValidationErrros(e);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+        }
       }
     },
     [signIn],
