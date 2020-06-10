@@ -3,7 +3,7 @@ import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Container, Content, Background, AnimationContainer } from './styles';
 import logoImg from '../../assets/logo.svg';
@@ -25,6 +25,7 @@ const SignIn: React.FC = () => {
 
   const { user, signIn } = useAuth();
   const { addToast } = useToast();
+  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -44,6 +45,8 @@ const SignIn: React.FC = () => {
           email: data.email,
           password: data.password,
         });
+
+        history.push('/dasboard');
       } catch (e) {
         if (e instanceof Yup.ValidationError) {
           const errors = getValidationErrros(e);
@@ -61,7 +64,7 @@ const SignIn: React.FC = () => {
         });
       }
     },
-    [signIn, addToast],
+    [signIn, addToast, history],
   );
 
   return (
