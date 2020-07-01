@@ -3,10 +3,10 @@
         "es2020": true
     },
     "extends": [
+        "plugin:prettier/recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier/@typescript-eslint",
-        "plugin:prettier/recommended",
         "airbnb"
     ],
     "globals":{
@@ -23,9 +23,9 @@
         "sourceType": "module"
     },
     "plugins": [
+        "prettier",
         "react",
         "react-hooks",
-        "prettier",
         "@typescript-eslint"
     ],
     "rules": {
@@ -35,6 +35,9 @@
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
         "import/prefer-default-export": "off",
         "react/prop-types": "off",
+        "arrow-parens": "off",
+        "no-unused-vars": "warn",
+        "no-unused-expressions": "warn",
         "react/jsx-props-no-spreading": "off",
         "import/extensions": [
             "error",
