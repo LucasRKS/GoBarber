@@ -14,6 +14,8 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import api from '../../services/api';
+
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
@@ -41,39 +43,52 @@ const SignUp: React.FC = () => {
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handleSignUp = useCallback(async (data: SignUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
-      console.log(data);
+  const handleSignUp = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+        console.log(data);
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required('O nome é obrigatório.'),
-        email: Yup.string()
-          .required('O e-mail é obrigatório')
-          .email('Insira um e-mail válido.'),
-        password: Yup.string().min(6, 'A senha deve ter no mínimo 6 dígitos.'),
-      });
+        const schema = Yup.object().shape({
+          name: Yup.string().required('O nome é obrigatório.'),
+          email: Yup.string()
+            .required('O e-mail é obrigatório')
+            .email('Insira um e-mail válido.'),
+          password: Yup.string().min(
+            6,
+            'A senha deve ter no mínimo 6 dígitos.',
+          ),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await api.post('/users', data);
-    } catch (e) {
-      if (e instanceof Yup.ValidationError) {
-        const errors = getValidationErrros(e);
+        Alert.alert(
+          'Cadastro realizado com sucesso!',
+          'Você já pode fazer login na aplicação.',
+        );
 
-        formRef.current?.setErrors(errors);
+        await api.post('/users', data);
 
-        return;
+        navigation.navigate('SignIn');
+      } catch (e) {
+        if (e instanceof Yup.ValidationError) {
+          const errors = getValidationErrros(e);
+
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
+
+        Alert.alert(
+          'Erro no cadastro',
+          'Ocorreu um erro ao fazer o cadastro, verifique as credenciais.',
+        );
       }
-
-      Alert.alert(
-        'Erro no cadasdtro',
-        'Ocorreu um erro ao fazer o cadastro, verifique as credenciais.',
-      );
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   return (
     <>
