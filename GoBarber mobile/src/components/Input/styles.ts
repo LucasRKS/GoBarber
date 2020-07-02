@@ -26,7 +26,7 @@ export const Container = styled.View<ContainerProps>`
 `;
 
 export const TextInput = styled.TextInput`
-  flex: 1%;
+  flex: 1;
   color: #fff;
   font-size: 16px;
   font-family: 'RobotoSlab-Regular';
