@@ -67,7 +67,7 @@ const SignUp: React.FC = () => {
                 autoCorrect={false}
                 autoCapitalize="none"
                 name="email"
-                icon="user"
+                icon="mail"
                 placeholder="E-mail"
                 returnKeyType="next"
                 onSubmitEditing={() => {
