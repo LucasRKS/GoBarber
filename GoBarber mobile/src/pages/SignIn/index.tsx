@@ -19,6 +19,8 @@ import Input from '../../components/Input';
 
 import getValidationErrros from '../../utils/getValidationErrors';
 
+import { useAuth } from '../../hooks/auth';
+
 import logoImg from '../../assets/logo.png';
 
 import {
@@ -41,6 +43,8 @@ const SignIn: React.FC = () => {
 
   const navigation = useNavigation();
 
+  const { signIn } = useAuth();
+
   const handleSignIn = useCallback(async (data: SignInFormData) => {
     try {
       formRef.current?.setErrors({});
@@ -54,10 +58,10 @@ const SignIn: React.FC = () => {
         abortEarly: false,
       });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+      await signIn({
+        email: data.email,
+        password: data.password,
+      });
     } catch (e) {
       if (e instanceof Yup.ValidationError) {
         const errors = getValidationErrros(e);
