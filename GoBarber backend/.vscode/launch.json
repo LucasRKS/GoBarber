@@ -9,7 +9,7 @@
             "request": "attach",
             "protocol": "inspector",
             "restart": true,
-            "name": "Debug",
+            "name": "Debug - GoStack",
             "skipFiles": [
                 "<node_internals>/**"
             ],
